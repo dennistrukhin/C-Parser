@@ -4,7 +4,7 @@
 
 #include <cstdlib>
 #include <cstring>
-#include "Lexem.h"
+#include "Lexeme.h"
 
 Lexeme::Lexeme(unsigned char *c) {
     int l = 0;

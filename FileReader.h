@@ -6,7 +6,7 @@
 #define PARSER_FILEREADER_H
 
 
-#include "Lexem.h"
+#include "Lexeme.h"
 
 class FileReader {
 private:
