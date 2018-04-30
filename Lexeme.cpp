@@ -4,14 +4,34 @@
 
 #include <cstdlib>
 #include <cstring>
+#include <iostream>
 #include "Lexeme.h"
 
-Lexeme::Lexeme(unsigned char *c) {
+Lexeme::Lexeme(int t) {
+    type = t;
+}
+
+void Lexeme::dump() {
+    std::cout << "[" << type << "] ";
+    for (int i = 0; i < length; i++) {
+        std::cout << chr[i];
+    }
+    std::cout << std::endl ;
+}
+
+Lexeme::Lexeme(int t, unsigned char *c) {
+    type = t;
     int l = 0;
     unsigned char *p = c;
-    while (*p != '\0', p++, l++);
-    size_t size = (l + 1) * sizeof(unsigned char);
+    while (*p != '\0') {
+        p++;
+        length++;
+    }
+    size_t size = (length + 1) * sizeof(unsigned char);
     chr = (unsigned char *) malloc(size);
     memcpy(chr, c, size);
-    chr[size] = '\0';
+}
+
+int Lexeme::getType() {
+    return type;
 }

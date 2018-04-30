@@ -10,11 +10,26 @@
 
 class FileReader {
 private:
+    enum {MODE_IDENTIFIER, MODE_NUMBER_CARDINAL, MODE_NUMBER_DECIMAL, MODE_STRING, MODE_OTHER, MODE_LOGIC_OR_ASSIGNMENT};
+    int mode = MODE_OTHER;
+    int startPos = 0;
+    int pos = 0;
+    long long int length = 0;
     char * b;
+    Lexeme *makeLexemeFromCurrentPositions(int type);
+    Lexeme *makeLogicOrAssignmentLexemeFromCurrentPositions();
 public:
-    explicit FileReader(char * fileName);
+    explicit FileReader(const char * fileName);
 
     Lexeme *readLexeme();
+
+    bool isEOF();
+
+    bool charIsAlphaNumeric(char c);
+    bool charIsAlpha(char c);
+    bool charIsNumeric(char c);
+    bool charIsWhiteSpace(char c);
+    bool charIsLogicOrAssignment(char c);
 };
 
 
